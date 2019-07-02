@@ -2,6 +2,7 @@ const express = require('express');
 
 const fs = require('fs');
 const hbs = require('hbs');
+const port = process.env.PORT || 3000;
 var app = express();
 
 hbs.registerPartials(__dirname +'/views/partials');
@@ -31,7 +32,7 @@ hbs.registerHelper('screamIt',(text)=>{
   return text.toUppercase();
   });
 
-app.use(express.static(__dirname + '/public'));  
+app.use(express.static(__dirname + '/public'));
 app.get('/',(req,res)=>{
   res.render('home.hbs',{
     pageTitle:'Home Page',
@@ -53,6 +54,6 @@ app.get('/bad',(req,res)=>{
   });
   });
 
-app.listen(3000,()=>{
-  console.log('server is on up 3000');
+app.listen(port,()=>{
+  console.log(`server is on up port ${port}`);
   });
